@@ -23,5 +23,9 @@ public class LoginViewModel extends ViewModel {
         if(userId != null && !userId.isEmpty()) {
             userIdError.setValue(false);
         }
+
+        if(password != null && !password.isEmpty()) {
+            passwordError.setValue(false);
+        }
     }
 }
