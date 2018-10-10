@@ -2,6 +2,7 @@ package gowtham.android.com.loginappwithmvvm.viewmodel;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
@@ -13,10 +14,15 @@ public class LoginViewModelTest {
     @Rule
     public TestRule rule = new InstantTaskExecutorRule();
 
+    private LoginViewModel viewModel;
+
+    @Before
+    public void setUp() throws Exception {
+        viewModel = new LoginViewModel();
+    }
+
     @Test
     public void setErrorMessagesToFalseWhenInitializing() {
-        LoginViewModel viewModel = new LoginViewModel();
-
         viewModel.initialize();
 
         assertNotNull(viewModel.userIdError);
@@ -25,5 +31,17 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.passwordError);
         assertNotNull(viewModel.passwordError.getValue());
         assertFalse(viewModel.passwordError.getValue());
+    }
+
+    @Test
+    public void setUserIdErrorToTrueWhenUserIdIsInvalid() {
+        viewModel.signIn("","");
+
+        assertNotNull(viewModel.userIdError);
+        assertNotNull(viewModel.userIdError.getValue());
+        assertTrue(viewModel.userIdError.getValue());
+        assertNotNull(viewModel.validationStatus);
+        assertNotNull(viewModel.validationStatus.getValue());
+        assertFalse(viewModel.validationStatus.getValue());
     }
 }
