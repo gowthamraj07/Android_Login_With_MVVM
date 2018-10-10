@@ -11,10 +11,11 @@ import static org.junit.Assert.*;
 
 public class LoginViewModelTest {
 
-    public static final String ANY_USER_ID = "any value";
-    public static final String EMPTY_USER_ID = "";
-    public static final String EMPTY_PASSWORD = "";
-    public static final String ANY_PASSWORD = "any password";
+    private static final String ANY_USER_ID = "any value";
+    private static final String EMPTY_USER_ID = "";
+    private static final String EMPTY_PASSWORD = "";
+    private static final String ANY_PASSWORD = "any password";
+
     @Rule
     public TestRule rule = new InstantTaskExecutorRule();
 
@@ -29,12 +30,8 @@ public class LoginViewModelTest {
     public void setErrorMessagesToFalseWhenInitializing() {
         viewModel.initialize();
 
-        assertNotNull(viewModel.userIdError);
-        assertNotNull(viewModel.userIdError.getValue());
-        assertFalse(viewModel.userIdError.getValue());
-        assertNotNull(viewModel.passwordError);
-        assertNotNull(viewModel.passwordError.getValue());
-        assertFalse(viewModel.passwordError.getValue());
+        assertHideUserIdError();
+        assertHidePasswordError();
     }
 
     @Test
@@ -59,30 +56,22 @@ public class LoginViewModelTest {
     public void hideUserIdErrorWhenUserIdHasSomeValues() {
         viewModel.signIn(ANY_USER_ID,EMPTY_PASSWORD);
 
-        assertNotNull(viewModel.userIdError);
-        assertNotNull(viewModel.userIdError.getValue());
-        assertFalse(viewModel.userIdError.getValue());
+        assertHideUserIdError();
     }
 
     @Test
     public void hidePasswordErrorWhenPasswordHasSomeValues() {
         viewModel.signIn(EMPTY_USER_ID, ANY_PASSWORD);
 
-        assertNotNull(viewModel.passwordError);
-        assertNotNull(viewModel.passwordError.getValue());
-        assertFalse(viewModel.passwordError.getValue());
+        assertHidePasswordError();
     }
 
     @Test
     public void setValidationStatusToTrueIfTheCredentialsAreValid() {
         viewModel.signIn(LoginViewModel.USERID, LoginViewModel.PASSWORD);
 
-        assertNotNull(viewModel.userIdError);
-        assertNotNull(viewModel.userIdError.getValue());
-        assertFalse(viewModel.userIdError.getValue());
-        assertNotNull(viewModel.passwordError);
-        assertNotNull(viewModel.passwordError.getValue());
-        assertFalse(viewModel.passwordError.getValue());
+        assertHideUserIdError();
+        assertHidePasswordError();
         assertNotNull(viewModel.validationStatus);
         assertNotNull(viewModel.validationStatus.getValue());
         assertTrue(viewModel.validationStatus.getValue());
@@ -92,14 +81,22 @@ public class LoginViewModelTest {
     public void setValidationStatusToFalseIfTheCredentialsAreNotValid() {
         viewModel.signIn(ANY_USER_ID, ANY_PASSWORD);
 
-        assertNotNull(viewModel.userIdError);
-        assertNotNull(viewModel.userIdError.getValue());
-        assertFalse(viewModel.userIdError.getValue());
-        assertNotNull(viewModel.passwordError);
-        assertNotNull(viewModel.passwordError.getValue());
-        assertFalse(viewModel.passwordError.getValue());
+        assertHideUserIdError();
+        assertHidePasswordError();
         assertNotNull(viewModel.validationStatus);
         assertNotNull(viewModel.validationStatus.getValue());
         assertFalse(viewModel.validationStatus.getValue());
+    }
+
+    private void assertHidePasswordError() {
+        assertNotNull(viewModel.passwordError);
+        assertNotNull(viewModel.passwordError.getValue());
+        assertFalse(viewModel.passwordError.getValue());
+    }
+
+    private void assertHideUserIdError() {
+        assertNotNull(viewModel.userIdError);
+        assertNotNull(viewModel.userIdError.getValue());
+        assertFalse(viewModel.userIdError.getValue());
     }
 }
