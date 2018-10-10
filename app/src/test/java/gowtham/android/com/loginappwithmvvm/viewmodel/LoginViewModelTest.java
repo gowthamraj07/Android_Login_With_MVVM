@@ -44,4 +44,16 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.validationStatus.getValue());
         assertFalse(viewModel.validationStatus.getValue());
     }
+
+    @Test
+    public void setPasswordErrorToTrueWhenPasswordIsInvalid() {
+        viewModel.signIn("","");
+
+        assertNotNull(viewModel.passwordError);
+        assertNotNull(viewModel.passwordError.getValue());
+        assertTrue(viewModel.passwordError.getValue());
+        assertNotNull(viewModel.validationStatus);
+        assertNotNull(viewModel.validationStatus.getValue());
+        assertFalse(viewModel.validationStatus.getValue());
+    }
 }

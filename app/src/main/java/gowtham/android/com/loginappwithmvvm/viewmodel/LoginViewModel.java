@@ -17,6 +17,7 @@ public class LoginViewModel extends ViewModel {
 
     public void signIn(String userId, String password) {
         userIdError.setValue(true);
+        passwordError.setValue(true);
         validationStatus.setValue(false);
     }
 }
