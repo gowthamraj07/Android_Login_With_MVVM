@@ -36,6 +36,10 @@ public class LoginViewModel extends ViewModel {
             return;
         }
 
+        if (!USERID.equals(userId) || !PASSWORD.equals(password)) {
+            return;
+        }
+
         validationStatus.setValue(true);
     }
 }

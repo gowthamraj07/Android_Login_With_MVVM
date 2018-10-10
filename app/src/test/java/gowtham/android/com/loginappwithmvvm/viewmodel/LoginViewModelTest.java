@@ -86,7 +86,7 @@ public class LoginViewModelTest {
     }
 
     @Test
-    public void setValidationStatusToTrueIfTheCredentialsAreNotValid() {
+    public void setValidationStatusToTrueIfTheCredentialsAreValid() {
         viewModel.signIn(LoginViewModel.USERID, LoginViewModel.PASSWORD);
 
         assertNotNull(viewModel.userIdError);
@@ -98,5 +98,20 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.validationStatus);
         assertNotNull(viewModel.validationStatus.getValue());
         assertTrue(viewModel.validationStatus.getValue());
+    }
+
+    @Test
+    public void setValidationStatusToFalseIfTheCredentialsAreNotValid() {
+        viewModel.signIn(ANY_USER_ID, ANY_PASSWORD);
+
+        assertNotNull(viewModel.userIdError);
+        assertNotNull(viewModel.userIdError.getValue());
+        assertFalse(viewModel.userIdError.getValue());
+        assertNotNull(viewModel.passwordError);
+        assertNotNull(viewModel.passwordError.getValue());
+        assertFalse(viewModel.passwordError.getValue());
+        assertNotNull(viewModel.validationStatus);
+        assertNotNull(viewModel.validationStatus.getValue());
+        assertFalse(viewModel.validationStatus.getValue());
     }
 }
