@@ -44,9 +44,6 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.userIdError);
         assertNotNull(viewModel.userIdError.getValue());
         assertTrue(viewModel.userIdError.getValue());
-        assertNotNull(viewModel.validationStatus);
-        assertNotNull(viewModel.validationStatus.getValue());
-        assertFalse(viewModel.validationStatus.getValue());
     }
 
     @Test
@@ -56,9 +53,6 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.passwordError);
         assertNotNull(viewModel.passwordError.getValue());
         assertTrue(viewModel.passwordError.getValue());
-        assertNotNull(viewModel.validationStatus);
-        assertNotNull(viewModel.validationStatus.getValue());
-        assertFalse(viewModel.validationStatus.getValue());
     }
 
     @Test
@@ -68,9 +62,6 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.userIdError);
         assertNotNull(viewModel.userIdError.getValue());
         assertFalse(viewModel.userIdError.getValue());
-        assertNotNull(viewModel.validationStatus);
-        assertNotNull(viewModel.validationStatus.getValue());
-        assertFalse(viewModel.validationStatus.getValue());
     }
 
     @Test
@@ -80,9 +71,6 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.passwordError);
         assertNotNull(viewModel.passwordError.getValue());
         assertFalse(viewModel.passwordError.getValue());
-        assertNotNull(viewModel.validationStatus);
-        assertNotNull(viewModel.validationStatus.getValue());
-        assertFalse(viewModel.validationStatus.getValue());
     }
 
     @Test

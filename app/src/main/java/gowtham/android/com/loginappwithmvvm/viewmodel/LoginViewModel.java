@@ -20,7 +20,6 @@ public class LoginViewModel extends ViewModel {
     public void signIn(String userId, String password) {
         userIdError.setValue(true);
         passwordError.setValue(true);
-        validationStatus.setValue(false);
 
         boolean isValidUserId = userId != null && !userId.isEmpty();
         if(isValidUserId) {
@@ -37,6 +36,7 @@ public class LoginViewModel extends ViewModel {
         }
 
         if (!USERID.equals(userId) || !PASSWORD.equals(password)) {
+            validationStatus.setValue(false);
             return;
         }
 
