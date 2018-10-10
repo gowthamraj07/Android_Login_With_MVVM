@@ -6,6 +6,8 @@ import android.arch.lifecycle.ViewModel;
 
 public class LoginViewModel extends ViewModel {
 
+    public static final String USERID = "userid";
+    public static final String PASSWORD = "password";
     public MutableLiveData<Boolean> userIdError = new MutableLiveData<>();
     public MutableLiveData<Boolean> passwordError = new MutableLiveData<>();
     public MutableLiveData<Boolean> validationStatus = new MutableLiveData<>();
@@ -20,12 +22,20 @@ public class LoginViewModel extends ViewModel {
         passwordError.setValue(true);
         validationStatus.setValue(false);
 
-        if(userId != null && !userId.isEmpty()) {
+        boolean isValidUserId = userId != null && !userId.isEmpty();
+        if(isValidUserId) {
             userIdError.setValue(false);
         }
 
-        if(password != null && !password.isEmpty()) {
+        boolean isValidPassword = password != null && !password.isEmpty();
+        if(isValidPassword) {
             passwordError.setValue(false);
         }
+
+        if (!isValidUserId || !isValidPassword) {
+            return;
+        }
+
+        validationStatus.setValue(true);
     }
 }
