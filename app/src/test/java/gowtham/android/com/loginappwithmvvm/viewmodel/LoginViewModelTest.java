@@ -56,4 +56,16 @@ public class LoginViewModelTest {
         assertNotNull(viewModel.validationStatus.getValue());
         assertFalse(viewModel.validationStatus.getValue());
     }
+
+    @Test
+    public void hideUserIdErrorWhenUserIdHasSomeValues() {
+        viewModel.signIn("any value","");
+
+        assertNotNull(viewModel.userIdError);
+        assertNotNull(viewModel.userIdError.getValue());
+        assertFalse(viewModel.userIdError.getValue());
+        assertNotNull(viewModel.validationStatus);
+        assertNotNull(viewModel.validationStatus.getValue());
+        assertFalse(viewModel.validationStatus.getValue());
+    }
 }

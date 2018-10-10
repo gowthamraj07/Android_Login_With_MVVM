@@ -19,5 +19,9 @@ public class LoginViewModel extends ViewModel {
         userIdError.setValue(true);
         passwordError.setValue(true);
         validationStatus.setValue(false);
+
+        if(userId != null && !userId.isEmpty()) {
+            userIdError.setValue(false);
+        }
     }
 }
